@@ -97,6 +97,20 @@ services:
     networks:
       - minha_rede
 
+  frontend:
+    build:
+      context: ./App/cadastro-pessoas
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - cadastroservices
+    environment:
+      - REACT_APP_API_URL=http://localhost:8080/cadastro/pessoa
+    networks:
+      - minha_rede
+  
 volumes:
   postgres_data:
 
