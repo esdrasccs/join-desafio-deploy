@@ -56,3 +56,13 @@ services:
       - kafka
     networks:
       - minha_rede
+      
+  validationservices:
+    build: 
+      context: ./microservicos/validationservices
+      dockerfile: Dockerfile 
+    container_name: validationservices     
+    ports:
+      - "8083:8083"    
+    networks:
+      - minha_rede
