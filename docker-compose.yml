@@ -56,7 +56,19 @@ services:
       - kafka
     networks:
       - minha_rede
-      
+
+  notificationservices:
+    build: 
+      context: ./microservicos/notificationservices
+      dockerfile: Dockerfile  
+    container_name: notificationservices    
+    ports:
+      - "8082:8082"
+    depends_on:     
+      - kafka    
+    networks:
+      - minha_rede
+        
   validationservices:
     build: 
       context: ./microservicos/validationservices
