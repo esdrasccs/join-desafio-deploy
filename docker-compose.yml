@@ -57,6 +57,24 @@ services:
     networks:
       - minha_rede
 
+  registroservices:
+    build: 
+      context: ./microservicos/registroservices
+      dockerfile: Dockerfile
+    container_name: registroservices      
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+      - kafka
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/projetoJoin
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 123456789@
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    networks:
+      - minha_rede
+  
   notificationservices:
     build: 
       context: ./microservicos/notificationservices
@@ -68,7 +86,7 @@ services:
       - kafka    
     networks:
       - minha_rede
-        
+
   validationservices:
     build: 
       context: ./microservicos/validationservices
@@ -78,3 +96,10 @@ services:
       - "8083:8083"    
     networks:
       - minha_rede
+
+volumes:
+  postgres_data:
+
+networks:
+  minha_rede:
+    driver: bridge
