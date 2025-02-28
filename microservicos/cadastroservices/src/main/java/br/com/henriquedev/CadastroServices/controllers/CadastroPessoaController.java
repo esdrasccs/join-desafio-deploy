@@ -4,6 +4,7 @@ package br.com.henriquedev.CadastroServices.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import br.com.henriquedev.CadastroServices.services.ValidationServices;
 
 @RestController
 @RequestMapping("/cadastro/pessoa")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CadastroPessoaController {
     
    @Autowired
